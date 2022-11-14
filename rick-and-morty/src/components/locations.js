@@ -4,6 +4,7 @@ export const Location = (props) => {
   const goBackHome = () => {
     setLocations(null);
   };
+
   return (
     <div className="characters">
       <h1>Locations</h1>

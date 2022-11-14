@@ -20,7 +20,6 @@ function App() {
     const response = await api.json();
     setLocations(response.results);
   };
-  console.log(locations);
 
   return (
     <div className="App">
@@ -37,7 +36,12 @@ function App() {
             <Characters characters={characters} setCharacters={setCharacters} />
           </>
         ) : locations ? (
-          <Location locations={locations} setLocations={setLocations} />
+          <Location
+            locations={locations}
+            setLocations={setLocations}
+            characters={characters}
+            setCharacters={setCharacters}
+          />
         ) : null}
       </header>
     </div>
