@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Characters } from "./components/characters.js";
+import { Location } from "./components/locations.js";
 import { MainPage } from "./components/mainPage.js";
 import rickAndMortyImage from "./images/rick-morty.png";
 
@@ -16,9 +17,10 @@ function App() {
 
   const locationsAPI = async () => {
     const api = await fetch("https://rickandmortyapi.com/api/location");
-    const response = api.json();
+    const response = await api.json();
     setLocations(response.results);
   };
+  console.log(locations);
 
   return (
     <div className="App">
@@ -30,11 +32,13 @@ function App() {
             charactersAPI={charactersAPI}
             locationsAPI={locationsAPI}
           />
-        ) : (
+        ) : characters ? (
           <>
             <Characters characters={characters} setCharacters={setCharacters} />
           </>
-        )}
+        ) : locations ? (
+          <Location locations={locations} setLocations={setLocations} />
+        ) : null}
       </header>
     </div>
   );
